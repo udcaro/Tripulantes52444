@@ -2,10 +2,11 @@ package model;
 
 /**
  * Tripulante
+ * 
  */
 public class Tripulante {
     /**
-     * Atributos
+     * Atributos de la clase tripulante
      */
     private String nombre;
     private int id;
