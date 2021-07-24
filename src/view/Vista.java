@@ -3,6 +3,8 @@ package view;
 import java.net.Socket;
 
 import model.Curso;
+import model.Formador;
+
 
 public class Vista {
     public static void main(String[] args){
