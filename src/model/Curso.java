@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class Curso {
+    public final static int MAXIMO_TRIPULANTES = 4;
     private int codigo;
     private String nombre;
     private char jornada;
@@ -21,11 +22,6 @@ public class Curso {
         tripulantes = new ArrayList<>();
     }
 
-    public String agregarTripulante(Tripulante t){
-        tripulantes.add(t);
-        return "Tripulante agregado al curso " + nombre;
-    }
-    
     public ArrayList<Tripulante> getTripulantes() {
         return tripulantes;
     }
@@ -50,11 +46,30 @@ public class Curso {
         this.jornada = jornada;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String nombre) {
+        this.nombre = nombre;
     }
 
     public Formador getFormador() {
         return formador;
+    }
+
+    public String agregarTripulante(Tripulante t){
+        if(tripulantes.size() == MAXIMO_TRIPULANTES){
+            return "No se pueden agregar más de " + MAXIMO_TRIPULANTES + " Tripulantes";
+        }
+        tripulantes.add(t);
+        return "Tripulante agregado al curso " + nombre;
+    }
+
+    public double calcularPromedioCurso() throws Exception{
+        if(tripulantes.size()==0){
+            throw new Exception("No hay tripulantes registrados en el curso");
+        }
+        double total = 0.0;
+        for (Tripulante tripulante : tripulantes){
+            total += tripulante.getAverage();
+        }
+        return total/tripulantes.size();
     }
 }
